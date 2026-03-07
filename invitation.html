@@ -4,79 +4,338 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sacred Thread Ceremony Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Georgia', serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'EB Garamond', serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 30px 15px;
+      background-color: #1a0a00;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(180,90,0,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 80%, rgba(120,40,0,0.3) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.07'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .invitation {
-      background: #fff;
-      padding: 50px;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      max-width: 700px;
+
+    .card {
+      position: relative;
+      background: linear-gradient(160deg, #fffdf5 0%, #fdf3dc 50%, #fff8e8 100%);
+      max-width: 720px;
+      width: 100%;
+      border-radius: 4px;
+      padding: 55px 55px 45px;
       text-align: center;
-      border: 5px double #b22222;
+      overflow: hidden;
+      animation: fadeIn 1.2s ease both;
     }
-    .invitation h1 {
-      color: #b22222;
-      font-size: 36px;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Outer decorative border ── */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 2px solid #b8860b;
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(184,134,11,0.45);
+      border-radius: 2px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Corner ornaments ── */
+    .corner {
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      z-index: 2;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner.tl { top: 4px; left: 4px; }
+    .corner.tr { top: 4px; right: 4px; transform: scaleX(-1); }
+    .corner.bl { bottom: 4px; left: 4px; transform: scaleY(-1); }
+    .corner.br { bottom: 4px; right: 4px; transform: scale(-1); }
+
+    /* ── Patterned background strip ── */
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 18px,
+          rgba(184,134,11,0.04) 18px,
+          rgba(184,134,11,0.04) 19px
+        );
+      pointer-events: none;
+    }
+
+    .content { position: relative; z-index: 3; }
+
+    /* ── Om symbol ── */
+    .om {
+      font-size: 52px;
+      color: #b8860b;
+      line-height: 1;
+      margin-bottom: 4px;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 6px rgba(184,134,11,0.4); }
+      to   { text-shadow: 0 0 20px rgba(184,134,11,0.85), 0 0 40px rgba(184,134,11,0.3); }
+    }
+
+    .flowers {
+      font-size: 22px;
+      letter-spacing: 6px;
+      color: #c0392b;
       margin-bottom: 10px;
     }
-    .invitation h2 {
-      color: #444;
-      font-size: 24px;
-      margin-bottom: 20px;
+
+    .title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 26px;
+      color: #8b1a1a;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      text-shadow: 1px 1px 0 rgba(184,134,11,0.25);
     }
-    .invitation p {
-      font-size: 18px;
-      margin: 15px 0;
-      color: #333;
-      line-height: 1.6;
+
+    .subtitle {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 13px;
+      color: #b8860b;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
     }
-    .details {
-      margin-top: 30px;
-      padding: 25px;
-      background: #f9ecec;
-      border-radius: 10px;
-      font-size: 18px;
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px auto;
+      max-width: 460px;
     }
-    .details p {
-      margin: 12px 0;
-    }
-    .footer {
-      margin-top: 30px;
+    .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, #b8860b, transparent); }
+    .divider-dot { color: #b8860b; font-size: 18px; }
+
+    .blessing {
       font-style: italic;
-      color: #555;
-      font-size: 16px;
+      color: #6b4c00;
+      font-size: 17px;
+      margin-bottom: 6px;
     }
-    strong {
-      color: #b22222;
+
+    .invite-text {
+      font-size: 17px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    .name-box {
+      margin: 20px auto;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #8b1a1a 0%, #c0392b 100%);
+      border-radius: 3px;
+      display: inline-block;
+      box-shadow: 0 4px 18px rgba(139,26,26,0.35);
+    }
+    .name-box .name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      color: #fff8dc;
+      letter-spacing: 3px;
+      display: block;
+    }
+    .name-box .parents {
+      font-size: 15px;
+      color: rgba(255,248,220,0.85);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* ── Details grid ── */
+    .details-grid {
+      margin: 28px 0 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .detail-card {
+      background: linear-gradient(135deg, rgba(139,26,26,0.06), rgba(184,134,11,0.08));
+      border: 1px solid rgba(184,134,11,0.35);
+      border-radius: 6px;
+      padding: 18px 14px;
+      transition: transform 0.2s;
+    }
+    .detail-card:hover { transform: translateY(-2px); }
+    .detail-icon { font-size: 26px; margin-bottom: 6px; display: block; }
+    .detail-label {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #b8860b;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .detail-value {
+      font-size: 16px;
+      color: #3a1a00;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    /* Full-width venue card */
+    .detail-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .footer-flowers { font-size: 20px; letter-spacing: 10px; color: #c0392b; margin-bottom: 10px; }
+
+    .footer-text {
+      font-style: italic;
+      color: #6b4c00;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 40px 24px 34px; }
+      .title { font-size: 20px; }
+      .details-grid { grid-template-columns: 1fr; }
+      .detail-card.full { grid-column: 1; }
+      .name-box .name { font-size: 17px; }
     }
   </style>
 </head>
 <body>
-    <div class="invitation">
-      <h1>✨ Sacred Thread Ceremony ✨</h1>
-      <h2>Invitation</h2>
-      <p>With the blessings of Lord Almighty,</p>
-      <p>We cordially invite you to the sacred thread ceremony of</p>
-      <p><strong>K. HARI MADWESH</strong></p>
-      <p>Son of <strong>K. RAVI KUMAR</strong> & <strong>K. SESHARATNAM</strong></p>
 
-      <div class="details">
-        <p><strong>📅 Date:</strong> 14th March 2026</p>
-        <p><strong>📍 Venue:</strong> Jangareddigudem, Eluru District, Andhra Pradesh</p>
+  <div class="card">
+    <div class="bg-pattern"></div>
+
+    <!-- Corner ornaments -->
+    <div class="corner tl">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 22 M4 4 L22 4" stroke="#b8860b" stroke-width="2"/>
+        <path d="M10 10 L10 20 M10 10 L20 10" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#b8860b"/>
+        <path d="M4 28 Q14 14 28 4" stroke="#b8860b" stroke-width="0.8" opacity="0.4" fill="none"/>
+        <circle cx="22" cy="4" r="1.5" fill="#b8860b" opacity="0.6"/>
+        <circle cx="4" cy="22" r="1.5" fill="#b8860b" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="corner tr">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 22 M4 4 L22 4" stroke="#b8860b" stroke-width="2"/>
+        <path d="M10 10 L10 20 M10 10 L20 10" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#b8860b"/>
+        <path d="M4 28 Q14 14 28 4" stroke="#b8860b" stroke-width="0.8" opacity="0.4" fill="none"/>
+        <circle cx="22" cy="4" r="1.5" fill="#b8860b" opacity="0.6"/>
+        <circle cx="4" cy="22" r="1.5" fill="#b8860b" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="corner bl">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 22 M4 4 L22 4" stroke="#b8860b" stroke-width="2"/>
+        <path d="M10 10 L10 20 M10 10 L20 10" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#b8860b"/>
+        <path d="M4 28 Q14 14 28 4" stroke="#b8860b" stroke-width="0.8" opacity="0.4" fill="none"/>
+        <circle cx="22" cy="4" r="1.5" fill="#b8860b" opacity="0.6"/>
+        <circle cx="4" cy="22" r="1.5" fill="#b8860b" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="corner br">
+      <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4 L4 22 M4 4 L22 4" stroke="#b8860b" stroke-width="2"/>
+        <path d="M10 10 L10 20 M10 10 L20 10" stroke="#b8860b" stroke-width="1" opacity="0.5"/>
+        <circle cx="4" cy="4" r="2.5" fill="#b8860b"/>
+        <path d="M4 28 Q14 14 28 4" stroke="#b8860b" stroke-width="0.8" opacity="0.4" fill="none"/>
+        <circle cx="22" cy="4" r="1.5" fill="#b8860b" opacity="0.6"/>
+        <circle cx="4" cy="22" r="1.5" fill="#b8860b" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <div class="content">
+      <div class="om">ॐ</div>
+      <div class="flowers">🌸 🪷 🌺 🪷 🌸</div>
+
+      <h1 class="title">Sacred Thread Ceremony</h1>
+      <p class="subtitle">Upanayanam</p>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-dot">✦</div>
+        <div class="divider-line"></div>
       </div>
 
-      <div class="footer">
-        <p>Your presence and blessings will make this occasion truly special.</p>
+      <p class="blessing">With the blessings of Lord Almighty,</p>
+      <p class="invite-text">We joyfully invite you to the auspicious Upanayanam of</p>
+
+      <div class="name-box">
+        <span class="name">K. HARI MADWESH</span>
+        <span class="parents">Son of <strong>K. Ravi Kumar</strong> &amp; <strong>K. Sesharatnam</strong></span>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-dot">🪔</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-card">
+          <span class="detail-icon">📅</span>
+          <div class="detail-label">Date</div>
+          <div class="detail-value">Saturday<br>14th March 2026</div>
+        </div>
+        <div class="detail-card">
+          <span class="detail-icon">⏰</span>
+          <div class="detail-label">Time</div>
+          <div class="detail-value">9:00 AM onwards</div>
+        </div>
+        <div class="detail-card full">
+          <span class="detail-icon">📍</span>
+          <div class="detail-label">Venue</div>
+          <div class="detail-value">Maddianjaneyaswamy Temple<br>Jangareddigudem, Eluru District, Andhra Pradesh</div>
+        </div>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-dot">✦</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div class="footer-flowers">🌼 🌻 🌼</div>
+      <p class="footer-text">
+        Your heartfelt presence and blessings<br>
+        will make this sacred occasion truly memorable.<br><br>
+        <em>— K. Ravi Kumar &amp; Family</em>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
       </div>
     </div>
 </body>
